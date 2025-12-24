@@ -1,36 +1,62 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# てのひら整骨院 HP
 
-## Getting Started
+ポップで楽しい黒板風デザインの整骨院ホームページ
 
-First, run the development server:
+## 技術スタック
+
+- **フレームワーク**: Next.js 14 (App Router)
+- **スタイリング**: Tailwind CSS
+- **フォント**: Yomogi（Google Fonts）
+- **言語**: TypeScript
+
+## 開発
 
 ```bash
+# 依存関係のインストール
+npm install
+
+# 開発サーバー起動
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# ビルド
+npm run build
+
+# 本番サーバー起動
+npm run start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+開発サーバー: http://localhost:3000
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## ディレクトリ構成
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+tenohira_seikotsu/
+├── app/
+│   ├── globals.css      # グローバルスタイル（黒板風CSS）
+│   ├── layout.tsx       # レイアウト
+│   └── page.tsx         # メインページ
+├── components/
+│   ├── Header.tsx       # ヘッダー・ナビゲーション
+│   ├── HeroSection.tsx  # ファーストビュー
+│   ├── TreatmentSection.tsx  # 施術内容
+│   ├── PriceSection.tsx      # 料金表
+│   ├── AccessSection.tsx     # アクセス・診療時間
+│   ├── InstagramSection.tsx  # Instagram埋め込み
+│   └── Footer.tsx       # フッター
+├── public/
+│   └── images/          # 画像素材を配置
+└── tailwind.config.ts   # Tailwind設定（カラーパレット等）
+```
 
-## Learn More
+## デザインコンセプト
 
-To learn more about Next.js, take a look at the following resources:
+- **参考**: 佐久間宣行さんの公式サイト風のポップなデザイン
+- **背景**: 黒板風（ダークグリーン）
+- **フォント**: チョーク手書き風
+- **カラー**: 黄色、ピンク、ブルー、グリーン、オレンジ
+- **特徴**: スクロールアニメーション、ホバーエフェクト、ギザギザ吹き出し
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Git情報
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **リポジトリ**: https://github.com/mapcocoro/tenohira_seikotsu.git
+- **ブランチ**: main
