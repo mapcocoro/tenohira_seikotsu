@@ -1,23 +1,328 @@
+@import url('https://fonts.googleapis.com/css2?family=Yomogi&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --chalkboard-dark: #1a2f23;
+  --chalkboard: #2d4a3e;
+  --chalkboard-light: #3d5a4e;
+  --chalk-white: #f5f5dc;
+  --chalk-yellow: #ffd93d;
+  --chalk-pink: #ff6b9d;
+  --chalk-blue: #6bcfff;
+  --chalk-green: #7ddf64;
+  --chalk-orange: #ff9a56;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  color: var(--chalk-white);
+  background: var(--chalkboard);
+  font-family: 'Yomogi', cursive;
+  overflow-x: hidden;
+}
+
+/* 黒板テクスチャ背景 */
+.chalkboard-bg {
+  background:
+    linear-gradient(135deg, rgba(26, 47, 35, 0.8) 0%, rgba(45, 74, 62, 0.9) 50%, rgba(26, 47, 35, 0.8) 100%),
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.03) 2px,
+      rgba(0, 0, 0, 0.03) 4px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.03) 2px,
+      rgba(0, 0, 0, 0.03) 4px
+    );
+  background-color: var(--chalkboard);
+}
+
+/* 黒板の木枠 */
+.chalkboard-frame {
+  border: 12px solid #5c3d2e;
+  border-radius: 4px;
+  box-shadow:
+    inset 0 0 50px rgba(0, 0, 0, 0.3),
+    0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* チョーク風テキスト */
+.chalk-text {
+  text-shadow:
+    0 0 5px rgba(255, 255, 255, 0.5),
+    0 0 10px rgba(255, 255, 255, 0.3),
+    2px 2px 0 rgba(0, 0, 0, 0.2);
+  letter-spacing: 0.05em;
+}
+
+/* チョーク風下線 */
+.chalk-underline {
+  position: relative;
+  display: inline-block;
+}
+
+.chalk-underline::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 3px;
+  background: currentColor;
+  opacity: 0.7;
+  border-radius: 2px;
+  transform: skewX(-5deg);
+}
+
+/* チョーク風囲み */
+.chalk-box {
+  border: 3px solid currentColor;
+  border-radius: 8px;
+  position: relative;
+  box-shadow:
+    inset 2px 2px 8px rgba(0, 0, 0, 0.2),
+    0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+.chalk-box::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border: 1px solid currentColor;
+  border-radius: 10px;
+  opacity: 0.3;
+}
+
+/* 吹き出しスタイル */
+.speech-bubble {
+  position: relative;
+  background: var(--chalk-yellow);
+  color: var(--chalkboard-dark);
+  padding: 1rem 1.5rem;
+  border-radius: 20px;
+  font-weight: bold;
+}
+
+.speech-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  left: 30px;
+  border-width: 15px 10px 0;
+  border-style: solid;
+  border-color: var(--chalk-yellow) transparent transparent transparent;
+}
+
+/* ギザギザ吹き出し（佐久間風） */
+.burst-bubble {
+  position: relative;
+  background: var(--chalk-yellow);
+  color: var(--chalkboard-dark);
+  padding: 1.5rem 2rem;
+  clip-path: polygon(
+    0% 50%, 10% 30%, 5% 15%, 25% 20%, 30% 0%, 45% 15%, 50% 5%,
+    55% 15%, 70% 0%, 75% 20%, 95% 15%, 90% 30%, 100% 50%,
+    90% 70%, 95% 85%, 75% 80%, 70% 100%, 55% 85%, 50% 95%,
+    45% 85%, 30% 100%, 25% 80%, 5% 85%, 10% 70%
+  );
+}
+
+/* スター装飾 */
+.star-deco {
+  position: relative;
+}
+
+.star-deco::before,
+.star-deco::after {
+  content: '✦';
+  position: absolute;
+  color: var(--chalk-yellow);
+  animation: sparkle 1.5s ease-in-out infinite;
+}
+
+.star-deco::before {
+  top: -10px;
+  left: -20px;
+  font-size: 1.2rem;
+}
+
+.star-deco::after {
+  bottom: -10px;
+  right: -20px;
+  font-size: 0.8rem;
+  animation-delay: 0.5s;
+}
+
+/* スクロールアニメーション用 */
+.scroll-animate {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease-out;
+}
+
+.scroll-animate.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* カスタムスクロールバー */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--chalkboard-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--chalk-white);
+  border-radius: 5px;
+  opacity: 0.5;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--chalk-yellow);
+}
+
+/* 手書き風ボーダー */
+.hand-drawn-border {
+  position: relative;
+  border: none;
+}
+
+.hand-drawn-border::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 3px solid currentColor;
+  border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+  pointer-events: none;
+}
+
+/* ホバーで揺れるエフェクト */
+.hover-wiggle:hover {
+  animation: wiggle 0.5s ease-in-out;
+}
+
+/* ポップなボタン */
+.pop-button {
+  position: relative;
+  transition: all 0.3s ease;
+  transform-style: preserve-3d;
+}
+
+.pop-button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: currentColor;
+  opacity: 0.3;
+  transform: translateZ(-10px) translateY(5px);
+  border-radius: inherit;
+  filter: blur(5px);
+}
+
+.pop-button:hover {
+  transform: translateY(-3px) scale(1.02);
+}
+
+.pop-button:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* テレビフレーム風（佐久間スタイル） */
+.tv-frame {
+  position: relative;
+  border: 8px solid #333;
+  border-radius: 15px;
+  background: #222;
+  padding: 10px;
+}
+
+.tv-frame::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  background: linear-gradient(45deg, #ff6b9d, #ffd93d, #6bcfff, #7ddf64);
+  border-radius: 18px;
+  z-index: -1;
+}
+
+/* イラスト用のフロートアニメーション */
+.float-illustration {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* 手書き矢印風 */
+.hand-arrow {
+  position: relative;
+}
+
+.hand-arrow::after {
+  content: '→';
+  position: absolute;
+  right: -30px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.5rem;
+  animation: float 2s ease-in-out infinite;
+}
+
+/* グリッド線（黒板っぽく） */
+.grid-lines {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+/* セクション区切り線 */
+.section-divider {
+  position: relative;
+  height: 4px;
+  background: linear-gradient(90deg,
+    transparent,
+    var(--chalk-yellow) 20%,
+    var(--chalk-pink) 50%,
+    var(--chalk-yellow) 80%,
+    transparent
+  );
+  margin: 3rem 0;
+  opacity: 0.6;
+}
+
+/* 目玉キャラクター用 */
+.eye-character {
+  position: relative;
+  display: inline-block;
+}
+
+.eye-character::before,
+.eye-character::after {
+  content: '👁';
+  font-size: 2rem;
+  position: absolute;
+  animation: float 2s ease-in-out infinite;
 }
 
 @layer utilities {
