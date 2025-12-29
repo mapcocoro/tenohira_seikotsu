@@ -1,0 +1,6 @@
+{
+  "rewrites": [
+    { "source": "/README.md", "destination": "/404" },
+    { "source": "/README", "destination": "/404" }
+  ]
+}
