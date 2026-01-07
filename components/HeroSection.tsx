@@ -95,19 +95,6 @@ export default function HeroSection() {
           </a>
         </div>
 
-        {/* スクロールインジケーター */}
-        <div
-          className={`absolute bottom-10 left-1/2 -translate-x-1/2 transition-all duration-700 delay-1000 ${
-            isLoaded ? 'opacity-100' : 'opacity-0'
-          }`}
-        >
-          <div className="flex flex-col items-center text-chalk-white/60">
-            <span className="text-sm mb-2">scroll</span>
-            <div className="w-6 h-10 border-2 border-chalk-white/60 rounded-full flex justify-center">
-              <div className="w-1.5 h-3 bg-chalk-white/60 rounded-full mt-2 animate-bounce" />
-            </div>
-          </div>
-        </div>
       </div>
 
       {/* 黒板の木枠風装飾（画面端） */}

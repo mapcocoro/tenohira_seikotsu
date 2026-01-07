@@ -1,6 +1,7 @@
 import Header from '@/components/Header';
 import HeroSection from '@/components/HeroSection';
 import TreatmentSection from '@/components/TreatmentSection';
+import StaffSection from '@/components/StaffSection';
 import PriceSection from '@/components/PriceSection';
 import AccessSection from '@/components/AccessSection';
 import InstagramSection from '@/components/InstagramSection';
@@ -16,6 +17,8 @@ export default function Home() {
         <InstagramSection />
         <div className="section-divider" />
         <TreatmentSection />
+        <div className="section-divider" />
+        <StaffSection />
         <div className="section-divider" />
         <PriceSection />
         <div className="section-divider" />

@@ -23,8 +23,14 @@ export default function Footer() {
           <div>
             <h4 className="text-lg font-bold text-chalk-pink mb-4">メニュー</h4>
             <nav className="flex flex-col gap-2">
+              <a href="#news" className="text-chalk-white/70 hover:text-chalk-yellow transition-colors">
+                最新情報
+              </a>
               <a href="#treatment" className="text-chalk-white/70 hover:text-chalk-yellow transition-colors">
                 施術内容
+              </a>
+              <a href="#staff" className="text-chalk-white/70 hover:text-chalk-yellow transition-colors">
+                院長紹介
               </a>
               <a href="#price" className="text-chalk-white/70 hover:text-chalk-yellow transition-colors">
                 料金
