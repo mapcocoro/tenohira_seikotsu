@@ -1,10 +1,14 @@
 /** @type {import('next').NextConfig} */
+const isProd = process.env.NODE_ENV === 'production';
 const nextConfig = {
   output: 'export',
-  basePath: '/tenohira_seikotsu',
-  assetPrefix: '/tenohira_seikotsu',
+  basePath: isProd ? '/tenohira_seikotsu' : '',
+  assetPrefix: isProd ? '/tenohira_seikotsu' : '',
   images: {
     unoptimized: true,
+  },
+  env: {
+    NEXT_PUBLIC_BASE_PATH: isProd ? '/tenohira_seikotsu' : '',
   },
 };
 
