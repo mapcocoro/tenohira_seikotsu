@@ -5,36 +5,31 @@ import { useEffect, useRef, useState } from 'react';
 const priceCategories = [
   {
     category: '保険施術',
-    description: '各種健康保険適用',
+    description: '各種健康保険・労災対応',
     items: [
-      { name: '初診', price: '1,500円〜', note: '※症状により異なります' },
-      { name: '2回目以降', price: '500円〜', note: '' },
+      { name: '保険施術', price: '要問合せ', note: '※保険割合・施術部位により異なります' },
     ],
     color: 'chalk-yellow',
     icon: '🏥',
   },
   {
-    category: '自費施術',
-    description: 'より丁寧なケアをご希望の方に',
+    category: '自費メニュー',
+    description: '症状に合わせた専門施術',
     items: [
-      { name: '全身調整（60分）', price: '5,500円', note: '' },
-      { name: '部分調整（30分）', price: '3,300円', note: '' },
-      { name: '骨盤矯正', price: '4,400円', note: '' },
-      { name: '産後骨盤矯正', price: '4,400円', note: '' },
+      { name: '肩こりスッキリコース（30分）', price: '3,300円', note: '肩甲骨をほぐして頭の位置を整えます。頭痛・首コリにも' },
+      { name: 'てのひら式背骨矯正', price: '要問合せ', note: '骨盤・背骨・股関節・足首を調整。音を鳴らさない調整も可' },
     ],
     color: 'chalk-pink',
     icon: '✨',
   },
   {
-    category: '特別メニュー',
-    description: 'スペシャルケア',
+    category: 'オプション',
+    description: '施術効果を高めるメニュー',
     items: [
-      { name: 'ヘッドマッサージ（20分）', price: '2,200円', note: '' },
-      { name: 'フットケア（30分）', price: '3,300円', note: '' },
-      { name: '美容鍼（要予約）', price: '6,600円', note: '' },
+      { name: '超音波コンビネーション', price: '550円', note: '五十肩・固まった肩腰・捻挫に。深部の筋肉をゆるめます' },
     ],
     color: 'chalk-blue',
-    icon: '💎',
+    icon: '⚡',
   },
 ];
 
