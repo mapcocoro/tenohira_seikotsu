@@ -2,6 +2,7 @@
 const nextConfig = {
   output: 'export',
   basePath: '/tenohira_seikotsu',
+  assetPrefix: '/tenohira_seikotsu',
   images: {
     unoptimized: true,
   },
