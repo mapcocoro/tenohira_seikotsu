@@ -6,9 +6,9 @@ const businessHours = [
   { day: '月', am: '○', pm: '○' },
   { day: '火', am: '○', pm: '○' },
   { day: '水', am: '○', pm: '○' },
-  { day: '木', am: '○', pm: '○' },
+  { day: '木', am: '○', pm: '' },
   { day: '金', am: '○', pm: '○' },
-  { day: '土', am: '○', pm: '△' },
+  { day: '土', am: '○', pm: '' },
   { day: '日', am: '休', pm: '休' },
   { day: '祝', am: '休', pm: '休' },
 ];
@@ -67,26 +67,24 @@ export default function AccessSection() {
                 <div className="flex flex-col sm:flex-row sm:gap-4">
                   <dt className="text-chalk-pink font-bold min-w-[100px]">住所</dt>
                   <dd>
-                    〒000-0000<br />
-                    ○○県○○市○○町1-2-3<br />
-                    ○○ビル1F
+                    〒578-0942<br />
+                    大阪府東大阪市若江東町4-2-8
                   </dd>
                 </div>
                 <div className="flex flex-col sm:flex-row sm:gap-4">
                   <dt className="text-chalk-pink font-bold min-w-[100px]">電話番号</dt>
                   <dd>
-                    <a href="tel:000-0000-0000" className="text-chalk-yellow hover:text-chalk-orange transition-colors">
-                      000-0000-0000
+                    <a href="tel:06-7172-4941" className="text-chalk-yellow hover:text-chalk-orange transition-colors text-xl font-bold">
+                      06-7172-4941
                     </a>
                   </dd>
                 </div>
                 <div className="flex flex-col sm:flex-row sm:gap-4">
                   <dt className="text-chalk-pink font-bold min-w-[100px]">アクセス</dt>
-                  <dd>○○駅 徒歩5分</dd>
-                </div>
-                <div className="flex flex-col sm:flex-row sm:gap-4">
-                  <dt className="text-chalk-pink font-bold min-w-[100px]">駐車場</dt>
-                  <dd>あり（3台）</dd>
+                  <dd>
+                    近鉄奈良線 若江岩田駅 徒歩12分<br />
+                    <span className="text-chalk-yellow">コープ若江店の目の前！</span>
+                  </dd>
                 </div>
               </dl>
             </div>
@@ -113,7 +111,7 @@ export default function AccessSection() {
                   <tbody>
                     <tr className="border-b border-chalk-white/20">
                       <td className="py-3 text-chalk-blue font-bold text-sm">
-                        9:00<br />〜<br />12:00
+                        9:00<br />〜<br />12:30
                       </td>
                       {businessHours.map((item) => (
                         <td
@@ -121,8 +119,6 @@ export default function AccessSection() {
                           className={`py-3 px-2 ${
                             item.am === '休'
                               ? 'text-chalk-white/40'
-                              : item.am === '△'
-                              ? 'text-chalk-orange'
                               : 'text-chalk-green'
                           }`}
                         >
@@ -132,7 +128,7 @@ export default function AccessSection() {
                     </tr>
                     <tr>
                       <td className="py-3 text-chalk-blue font-bold text-sm">
-                        15:00<br />〜<br />20:00
+                        15:30<br />〜<br />19:30
                       </td>
                       {businessHours.map((item) => (
                         <td
@@ -140,12 +136,12 @@ export default function AccessSection() {
                           className={`py-3 px-2 ${
                             item.pm === '休'
                               ? 'text-chalk-white/40'
-                              : item.pm === '△'
-                              ? 'text-chalk-orange'
+                              : item.pm === ''
+                              ? 'text-chalk-white/40'
                               : 'text-chalk-green'
                           }`}
                         >
-                          {item.pm}
+                          {item.pm === '' ? '−' : item.pm}
                         </td>
                       ))}
                     </tr>
@@ -159,7 +155,7 @@ export default function AccessSection() {
                   <span className="text-chalk-green">○</span> 診療
                 </span>
                 <span className="flex items-center gap-1">
-                  <span className="text-chalk-orange">△</span> 午前のみ / 17:00まで
+                  <span className="text-chalk-white/40">−</span> 午前のみ（木・土）
                 </span>
                 <span className="flex items-center gap-1">
                   <span className="text-chalk-white/40">休</span> 休診
@@ -178,28 +174,18 @@ export default function AccessSection() {
               <h3 className="text-2xl font-bold text-chalk-yellow mb-4 flex items-center gap-2">
                 <span className="animate-float">📍</span> 地図
               </h3>
-              {/* Google Map埋め込み（プレースホルダー） */}
+              {/* Google Map埋め込み */}
               <div className="relative w-full h-80 lg:h-[calc(100%-60px)] bg-chalkboard-dark rounded-lg overflow-hidden">
-                {/* 実際の地図はGoogle Maps Embedを使用 */}
-                <div className="absolute inset-0 flex items-center justify-center text-chalk-white/60">
-                  <div className="text-center">
-                    <span className="text-6xl mb-4 block">🗺️</span>
-                    <p>Google Map</p>
-                    <p className="text-sm mt-2">※実際の住所を設定してください</p>
-                  </div>
-                </div>
-                {/* 実際のマップ埋め込み例（住所を入れ替えてください） */}
-                {/*
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=YOUR_EMBED_URL"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3281.123456789!2d135.5889!3d34.6689!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzTCsDQwJzA4LjAiTiAxMzXCsDM1JzIwLjAiRQ!5e0!3m2!1sja!2sjp!4v1704567890123"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
+                  title="てのひら整骨院 地図"
                 />
-                */}
               </div>
             </div>
           </div>
@@ -213,16 +199,10 @@ export default function AccessSection() {
         >
           <div className="flex flex-col md:flex-row justify-center gap-4">
             <a
-              href="tel:000-0000-0000"
+              href="tel:06-7172-4941"
               className="pop-button bg-chalk-yellow text-chalkboard-dark px-8 py-4 rounded-full text-xl font-bold inline-flex items-center justify-center gap-2 hover:bg-chalk-orange transition-colors"
             >
-              📞 電話で予約
-            </a>
-            <a
-              href="#"
-              className="pop-button bg-chalk-green text-chalkboard-dark px-8 py-4 rounded-full text-xl font-bold inline-flex items-center justify-center gap-2 hover:bg-chalk-blue transition-colors"
-            >
-              💬 LINEで予約
+              📞 お電話でのご予約・お問合せ
             </a>
           </div>
         </div>

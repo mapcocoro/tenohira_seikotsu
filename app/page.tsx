@@ -13,13 +13,13 @@ export default function Home() {
       <main>
         <HeroSection />
         <div className="section-divider" />
+        <InstagramSection />
+        <div className="section-divider" />
         <TreatmentSection />
         <div className="section-divider" />
         <PriceSection />
         <div className="section-divider" />
         <AccessSection />
-        <div className="section-divider" />
-        <InstagramSection />
       </main>
       <Footer />
     </>

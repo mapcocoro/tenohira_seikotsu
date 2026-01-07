@@ -14,8 +14,8 @@ export default function Footer() {
               🤲 てのひら整骨院
             </h3>
             <p className="text-chalk-white/70 leading-relaxed">
-              あなたの身体と心をやさしくケアする、<br />
-              地域に根ざした整骨院です。
+              独自の「てのひら式整体」で<br />
+              全身を調整。コープ若江店の目の前！
             </p>
           </div>
 
@@ -23,9 +23,6 @@ export default function Footer() {
           <div>
             <h4 className="text-lg font-bold text-chalk-pink mb-4">メニュー</h4>
             <nav className="flex flex-col gap-2">
-              <a href="#about" className="text-chalk-white/70 hover:text-chalk-yellow transition-colors">
-                てのひらって？
-              </a>
               <a href="#treatment" className="text-chalk-white/70 hover:text-chalk-yellow transition-colors">
                 施術内容
               </a>
@@ -43,18 +40,19 @@ export default function Footer() {
             <h4 className="text-lg font-bold text-chalk-blue mb-4">お問い合わせ</h4>
             <div className="space-y-2 text-chalk-white/70">
               <p>
-                <span className="text-chalk-green">📍</span> 〒000-0000 ○○県○○市○○町1-2-3
+                <span className="text-chalk-green">📍</span> 〒578-0942<br />
+                <span className="pl-5">大阪府東大阪市若江東町4-2-8</span>
               </p>
               <p>
                 <span className="text-chalk-yellow">📞</span>{' '}
-                <a href="tel:000-0000-0000" className="hover:text-chalk-yellow transition-colors">
-                  000-0000-0000
+                <a href="tel:06-7172-4941" className="hover:text-chalk-yellow transition-colors font-bold">
+                  06-7172-4941
                 </a>
               </p>
               <p>
-                <span className="text-chalk-pink">⏰</span> 9:00〜12:00 / 15:00〜20:00
+                <span className="text-chalk-pink">⏰</span> 9:00〜12:30 / 15:30〜19:30
               </p>
-              <p className="text-sm text-chalk-white/50">※日曜・祝日休診</p>
+              <p className="text-sm text-chalk-white/50">※木・土は午前のみ／日曜・祝日休診</p>
             </div>
           </div>
         </div>

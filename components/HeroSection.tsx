@@ -58,9 +58,9 @@ export default function HeroSection() {
             isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}
         >
-          あなたの身体を
-          <span className="text-chalk-pink inline-block animate-bounce-slow">やさしく</span>
-          ケアします
+          独自の
+          <span className="text-chalk-pink inline-block animate-bounce-slow">てのひら式整体</span>
+          で全身調整
         </p>
 
         {/* サブテキスト吹き出し */}
@@ -69,10 +69,10 @@ export default function HeroSection() {
             isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}
         >
-          <span className="speech-bubble text-sm md:text-base">肩こり</span>
-          <span className="speech-bubble text-sm md:text-base bg-chalk-pink">腰痛</span>
-          <span className="speech-bubble text-sm md:text-base bg-chalk-blue">スポーツ障害</span>
-          <span className="speech-bubble text-sm md:text-base bg-chalk-green text-chalkboard-dark">産後ケア</span>
+          <span className="speech-bubble text-sm md:text-base">各種保険取扱</span>
+          <span className="speech-bubble text-sm md:text-base bg-chalk-pink">労災</span>
+          <span className="speech-bubble text-sm md:text-base bg-chalk-blue">交通事故</span>
+          <span className="speech-bubble text-sm md:text-base bg-chalk-green text-chalkboard-dark">ウォーターベッド完備</span>
         </div>
 
         {/* CTAボタン */}
@@ -88,7 +88,7 @@ export default function HeroSection() {
             📍 アクセスを見る
           </a>
           <a
-            href="tel:000-0000-0000"
+            href="tel:06-7172-4941"
             className="pop-button bg-chalk-pink text-chalkboard-dark px-8 py-4 rounded-full text-xl font-bold hover:bg-chalk-orange transition-colors"
           >
             📞 電話する

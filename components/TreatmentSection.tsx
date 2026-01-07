@@ -2,70 +2,23 @@
 
 import { useEffect, useRef, useState } from 'react';
 
-const treatments = [
-  {
-    id: 1,
-    icon: '💆',
-    title: '肩こり・首こり',
-    description: 'デスクワークや姿勢の悪さからくる肩こり・首こりを、丁寧な手技で改善します。',
-    color: 'chalk-yellow',
-  },
-  {
-    id: 2,
-    icon: '🦴',
-    title: '腰痛・ぎっくり腰',
-    description: '急な痛みから慢性的な腰痛まで、原因を見極めて適切な施術を行います。',
-    color: 'chalk-pink',
-  },
-  {
-    id: 3,
-    icon: '⚽',
-    title: 'スポーツ障害',
-    description: '部活やスポーツでのケガ、パフォーマンス向上のためのケアをサポート。',
-    color: 'chalk-blue',
-  },
-  {
-    id: 4,
-    icon: '👶',
-    title: '産後ケア',
-    description: '産後の骨盤矯正や身体のバランスを整え、育児疲れをケアします。',
-    color: 'chalk-green',
-  },
-  {
-    id: 5,
-    icon: '🦵',
-    title: '膝・関節の痛み',
-    description: '加齢やスポーツによる膝・関節の痛みを、根本から改善していきます。',
-    color: 'chalk-orange',
-  },
-  {
-    id: 6,
-    icon: '😴',
-    title: '疲労回復・リラクゼーション',
-    description: '日々の疲れを癒し、心身ともにリフレッシュできる施術を提供。',
-    color: 'chalk-white',
-  },
-];
-
 export default function TreatmentSection() {
-  const [visibleItems, setVisibleItems] = useState<number[]>([]);
+  const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const id = Number(entry.target.getAttribute('data-id'));
-            setVisibleItems((prev) => prev.includes(id) ? prev : [...prev, id]);
-          }
-        });
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
       },
-      { threshold: 0.2 }
+      { threshold: 0.1 }
     );
 
-    const cards = sectionRef.current?.querySelectorAll('.treatment-card');
-    cards?.forEach((card) => observer.observe(card));
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
 
     return () => observer.disconnect();
   }, []);
@@ -81,51 +34,86 @@ export default function TreatmentSection() {
           <h2 className="text-4xl md:text-5xl font-bold chalk-text text-chalk-white mb-4">
             施術内容
           </h2>
-          <p className="text-lg text-chalk-white/80">
-            こんなお悩み、ありませんか？
+          <p className="text-lg text-chalk-white/80 max-w-2xl mx-auto">
+            コープ若江店の向かいにある、黄色い看板の整骨院です。<br />
+            マッサージでは取れない痛み、病院で年齢のせいと言われた痛み、<br className="hidden md:block" />
+            もう一度原因を探してみませんか？
           </p>
         </div>
 
-        {/* 施術カード */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {treatments.map((treatment, index) => (
-            <div
-              key={treatment.id}
-              data-id={treatment.id}
-              className={`treatment-card chalk-box p-6 text-${treatment.color} transition-all duration-500 hover:scale-105 cursor-pointer ${
-                visibleItems.includes(treatment.id)
-                  ? 'opacity-100 translate-y-0'
-                  : 'opacity-0 translate-y-10'
-              }`}
-              style={{ transitionDelay: `${index * 100}ms` }}
-            >
-              {/* アイコン */}
-              <div className="text-5xl mb-4 animate-float" style={{ animationDelay: `${index * 0.2}s` }}>
-                {treatment.icon}
+        {/* てのひら式整体 */}
+        <div className={`mb-12 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <div className="chalk-box p-8">
+            <h3 className="text-3xl font-bold text-chalk-yellow mb-6 flex items-center gap-3">
+              <span className="animate-float">🤲</span>
+              「てのひら式整体」とは？
+            </h3>
+
+            {/* 検査 */}
+            <div className="mb-8">
+              <div className="flex items-center gap-3 mb-4">
+                <span className="bg-chalk-blue text-chalkboard-dark px-4 py-2 rounded-full font-bold text-lg">
+                  Step 1
+                </span>
+                <h4 className="text-2xl font-bold text-chalk-blue">まずは検査から</h4>
               </div>
-
-              {/* タイトル */}
-              <h3 className={`text-2xl font-bold mb-3 chalk-underline text-${treatment.color}`}>
-                {treatment.title}
-              </h3>
-
-              {/* 説明 */}
-              <p className="text-chalk-white/90 leading-relaxed">
-                {treatment.description}
+              <p className="text-chalk-white/90 leading-relaxed pl-4 border-l-4 border-chalk-blue/50">
+                初診時に体のどの部分が痛いのかをしっかり検査します。<br />
+                体をねじったり、腰を持ち上げるなど、日常の動作でどの部分に痛みがでるのか調べます。
               </p>
-
-              {/* 装飾 */}
-              <div className="absolute top-2 right-2 text-xl opacity-50">✦</div>
             </div>
-          ))}
+
+            {/* 治療 */}
+            <div>
+              <div className="flex items-center gap-3 mb-4">
+                <span className="bg-chalk-pink text-chalkboard-dark px-4 py-2 rounded-full font-bold text-lg">
+                  Step 2
+                </span>
+                <h4 className="text-2xl font-bold text-chalk-pink">治療</h4>
+              </div>
+              <p className="text-chalk-white/90 leading-relaxed pl-4 border-l-4 border-chalk-pink/50">
+                骨盤や背骨の歪み、肩や足首の位置など全身を調整します。<br />
+                検査時に痛かった部分の痛みを取り、動きがスムーズになるよう治療していきます。<br />
+                患者様自身に体の変化を聞きながら進めていきますので、効果がわかりやすく安心して治療を受けることができます。
+              </p>
+            </div>
+          </div>
         </div>
 
-        {/* 補足テキスト */}
-        <div className="text-center mt-12">
-          <div className="inline-block speech-bubble bg-chalk-yellow">
-            <p className="text-lg">
-              上記以外のお悩みもお気軽にご相談ください！
-            </p>
+        {/* 交通事故治療 */}
+        <div className={`mb-12 transition-all duration-700 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <div className="chalk-box p-8">
+            <h3 className="text-3xl font-bold text-chalk-green mb-6 flex items-center gap-3">
+              <span className="animate-float">🚗</span>
+              「交通事故治療」について
+            </h3>
+            <div className="space-y-4 text-chalk-white/90 leading-relaxed">
+              <p>
+                当院では、交通事故治療を行っております。<br />
+                基本的には、<span className="text-chalk-yellow font-bold">病院との併用をおすすめ</span>しています。
+              </p>
+              <p>
+                病院でレントゲンやMRIなどの画像診断を行い、当院では痛みを取る手技療法やリハビリを行っていきます。
+              </p>
+              <p className="text-chalk-orange">
+                ムチウチで、首をさわって治療することができない患者様でも<br />
+                首の痛みを楽にする<span className="font-bold">独自の治療法</span>がありますので、ご安心ください。
+              </p>
+              <p className="text-chalk-blue">
+                保険会社とのやりとりも行いますので、お気軽にお問合せください。
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* 設備 */}
+        <div className={`transition-all duration-700 delay-400 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <div className="text-center">
+            <div className="inline-block speech-bubble bg-chalk-yellow">
+              <p className="text-lg font-bold">
+                最新のウォーターベッド・電気治療器完備！
+              </p>
+            </div>
           </div>
         </div>
       </div>

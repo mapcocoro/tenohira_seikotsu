@@ -15,7 +15,6 @@ export default function Header() {
   }, []);
 
   const menuItems = [
-    { href: '#about', label: 'てのひらって？' },
     { href: '#treatment', label: '施術内容' },
     { href: '#price', label: '料金' },
     { href: '#access', label: 'アクセス' },
